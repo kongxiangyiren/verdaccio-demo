@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "verdaccio",
+    "postinstall": "patch-package",
+    "pm2:start": "pm2 start pm2.yaml && pm2 save --force",
+    "pm2:stop": "pm2 stop verdaccio && pm2 save --force",
+    "pm2:delete": "pm2 delete verdaccio && pm2 save --force"
+  },
+  "dependencies": {
+    "verdaccio": "^5.23.2"
+  },
+  "devDependencies": {
+    "patch-package": "^6.5.1",
+    "pm2": "^5.3.0"
+  }
+}
