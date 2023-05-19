@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "verdaccio",
+    "list" :"node storage-list.mjs",
     "postinstall": "patch-package",
     "pm2:start": "pm2 start pm2.yaml && pm2 save --force",
     "pm2:stop": "pm2 stop verdaccio && pm2 save --force",

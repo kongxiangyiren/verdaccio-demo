@@ -35,3 +35,15 @@ pm2 startup
 ```bash
 pm2 update
 ```
+### 注意事项
+
+要下载新的包前，请先清理本地缓存,否则不会下载压缩包
+
+npm
+```sh
+npm cache clean --force
+```
+yarn
+```sh
+yarn cache clean --force
+```
