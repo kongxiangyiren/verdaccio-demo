@@ -2,3 +2,4 @@ node_modules
 storage
 htpasswd
 *.log
+pm2/
