@@ -18,6 +18,12 @@ yarn && npx pm2 install pm2-logrotate
 npm run pm2:start
 ```
 
+### 保存 pm2 状态
+
+```sh
+npx pm2 save
+```
+
 ### win 设置开机自启
 
 ```bash
@@ -35,15 +41,19 @@ pm2 startup
 ```bash
 pm2 update
 ```
+
 ### 注意事项
 
 要下载新的包前，请先清理本地缓存,否则不会下载压缩包
 
 npm
+
 ```sh
 npm cache clean --force
 ```
+
 yarn
+
 ```sh
 yarn cache clean --force
 ```
