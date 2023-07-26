@@ -76,7 +76,11 @@ uplinks:
   yarn:
     url: https://registry.yarnpkg.com/
   taobao:
-    url: https://registry.npm.taobao.org/
+    url: https://registry.npmmirror.com/
+  cnpm:
+    url: https://r.cnpmjs.org/
+  tencent:
+    url: https://mirrors.cloud.tencent.com/npm/
 
 # 了解如何保护您的软件包
 # https://verdaccio.org/docs/protect-your-dependencies/
@@ -87,7 +91,7 @@ packages:
     access: $all
     publish: $authenticated
     unpublish: $authenticated
-    proxy: taobao npmjs
+    proxy: taobao tencent
 
   '**':
     # 允许所有用户(包括未经身份验证的用户)读取和
@@ -103,7 +107,7 @@ packages:
     unpublish: $authenticated
 
     # if package is not available locally, proxy requests to 'npmjs' registry
-    proxy: taobao npmjs
+    proxy: taobao tencent
 
 # To improve your security configuration and  avoid dependency confusion
 # consider removing the proxy property for private packages
