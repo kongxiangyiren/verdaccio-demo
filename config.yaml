@@ -43,18 +43,18 @@ web:
   # showRaw: true
   # showDownloadTarball: true
   #  HTML tags injected after manifest <scripts/>
-  # scriptsBodyAfter:
-  #    - '<script type="text/javascript" src="https://my.company.com/customJS.min.js"></script>'
-  #  HTML tags injected before ends </head>
-  #  metaScripts:
-  #    - '<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>'
-  #    - '<script type="text/javascript" src="https://browser.sentry-cdn.com/5.15.5/bundle.min.js"></script>'
-  #    - '<meta name="robots" content="noindex" />'
-  #  HTML tags injected first child at <body/>
-  #  bodyBefore:
-  #    - '<div id="myId">html before webpack scripts</div>'
-  #  Public path for template manifest scripts (only manifest)
-  #  publicPath: http://somedomain.org/
+  scriptsBodyAfter:
+  #   - '<script type="text/javascript" src="https://my.company.com/customJS.min.js"></script>'
+  # HTML tags injected before ends </head>
+  metaScripts:
+    # - '<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>'
+    # - '<script type="text/javascript" src="https://browser.sentry-cdn.com/5.15.5/bundle.min.js"></script>'
+    - '<meta name="robots" content="noindex" />' #告诉搜索引擎不要对这个页面进行索引
+  # HTML tags injected first child at <body/>
+  # scriptsbodyBefore:
+  #   - '<div id="myId">html before webpack scripts</div>'
+  # Public path for template manifest scripts (only manifest)
+  # publicPath: http://somedomain.org/
 
 # https://verdaccio.org/docs/configuration#authentication
 auth:
@@ -72,7 +72,7 @@ auth:
 # a list of other known repositories we can talk to
 uplinks:
   npmjs:
-    url: https://registry.npmjs.org/
+    url: https://registry.npmjs.com/
   yarn:
     url: https://registry.yarnpkg.com/
   taobao:
@@ -91,7 +91,7 @@ packages:
     access: $all
     publish: $authenticated
     unpublish: $authenticated
-    proxy: taobao tencent
+    proxy: taobao npmjs
 
   '**':
     # 允许所有用户(包括未经身份验证的用户)读取和
@@ -107,7 +107,7 @@ packages:
     unpublish: $authenticated
 
     # if package is not available locally, proxy requests to 'npmjs' registry
-    proxy: taobao tencent
+    proxy: taobao npmjs
 
 # To improve your security configuration and  avoid dependency confusion
 # consider removing the proxy property for private packages
