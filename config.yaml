@@ -3,57 +3,59 @@
 # 请仔细阅读文档和最佳实践
 # 提高安全性。
 #
-# 查看更多配置文件示例:
-# https://github.com/verdaccio/verdaccio/tree/5.x/conf
+# 查看此处查看更多配置文件示例：
+# https://github.com/verdaccio/verdaccio/tree/5.x/packages/config/src/conf/default.yaml
 #
 # 阅读最佳实践
 # https://verdaccio.org/docs/best
 
 # 包含所有包的目录的路径
 storage: ./storage
-# 包含插件的目录的路径
-plugins: ./plugins
+# 包含插件的目录的路径，插件文件夹具有加载插件的更高优先级
+# 禁用此文件夹以避免在不使用时发出警告
+# plugins: ./plugins
 
 # https://verdaccio.org/docs/webui
 web:
   enable: true
   title: 空巷一人的npm中心代理仓库
-  favicon: './logo.png'
-  logo: './logo.png'
-  # gravatar头像
+  # favicon: ./logo.ico # 目前无效
+  logo: ./logo.ico
+  # 注释以禁用gravatar支持
   gravatar: true
   pkgManagers:
     - npm
     - yarn
     - pnpm
-  # by default packages are ordercer ascendant (asc|desc)
-  # sort_packages: asc # 包的排序
-  # 黑暗模式
+  # 默认情况下，包裹处于asc (asc|desc)
+  # sort_packages: asc
+  # 将用户界面转换为黑暗
   # darkMode: true
   html_cache: true
-  # 默认显示所有特性
+  # 默认情况下，将显示所有功能
   login: true #登录
   primary_color: '#2185d0' #主题色
   showInfo: false #信息
   # showSettings: true
-  # 结合darkMode，你可以强制特定的主题
+  # 结合darkMode，您可以强制使用特定主题
   # showThemeSwitch: true
   showFooter: false
   # showSearch: true
   # showRaw: true
   # showDownloadTarball: true
   #  HTML tags injected after manifest <scripts/>
-  scriptsBodyAfter:
-  #   - '<script type="text/javascript" src="https://my.company.com/customJS.min.js"></script>'
-  # HTML tags injected before ends </head>
+  # scriptsBodyAfter:
+  #   - <div id="myId">html before webpack scripts</div>
+  #  - '<script type="text/javascript" src="https://my.company.com/customJS.min.js"></script>'
+  #  HTML tags injected before ends </head>
   metaScripts:
-    # - '<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>'
-    # - '<script type="text/javascript" src="https://browser.sentry-cdn.com/5.15.5/bundle.min.js"></script>'
+    #    - '<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>'
+    #    - '<script type="text/javascript" src="https://browser.sentry-cdn.com/5.15.5/bundle.min.js"></script>'
     - '<meta name="robots" content="noindex" />' #告诉搜索引擎不要对这个页面进行索引
-  # HTML tags injected first child at <body/>
+  #  HTML tags injected first child at <body/>
   # scriptsbodyBefore:
-  #   - '<div id="myId">html before webpack scripts</div>'
-  # Public path for template manifest scripts (only manifest)
+  # - '<div id="myId">html before webpack scripts</div>'
+  #  Public path for template manifest scripts (only manifest)
   # publicPath: http://somedomain.org/
 
 # https://verdaccio.org/docs/configuration#authentication
@@ -62,27 +64,23 @@ auth:
     file: ./htpasswd
     # 允许注册的最大用户数，默认为“+inf”。
     # 您可以将其设置为-1以禁用注册。
-    # max_users: -1
-    # 哈希算法，可选项是: "bcrypt", "md5", "sha1", "crypt".
-    algorithm: bcrypt # 默认为crypt，但建议在新安装中使用bcrypt
-    # “bcrypt”的轮数将被其他算法忽略。
-    rounds: 10
+    # max_users: 1000
 
 # https://verdaccio.org/docs/configuration#uplinks
-# a list of other known repositories we can talk to
+# 我们可以联系的其他已知存储库的列表
 uplinks:
-  npmjs:
-    url: https://registry.npmjs.com/
-  yarn:
-    url: https://registry.yarnpkg.com/
+  # npmjs:
+  #   url: https://registry.npmjs.com/
+  # yarn:
+  #   url: https://registry.yarnpkg.com/
   taobao:
     url: https://registry.npmmirror.com/
   cnpm:
     url: https://r.cnpmjs.org/
-  tencent:
-    url: https://mirrors.cloud.tencent.com/npm/
+  # tencent: # 最好注释 否则远程搜索会出问题
+  #   url: https://mirrors.cloud.tencent.com/npm/
 
-# 了解如何保护您的软件包
+# 了解如何保护您的包
 # https://verdaccio.org/docs/protect-your-dependencies/
 # https://verdaccio.org/docs/configuration#packages
 packages:
@@ -91,7 +89,7 @@ packages:
     access: $all
     publish: $authenticated
     unpublish: $authenticated
-    proxy: taobao tencent
+    proxy: taobao
 
   '**':
     # 允许所有用户(包括未经身份验证的用户)读取和
@@ -107,7 +105,7 @@ packages:
     unpublish: $authenticated
 
     # if package is not available locally, proxy requests to 'npmjs' registry
-    proxy: taobao tencent
+    proxy: taobao
 
 # To improve your security configuration and  avoid dependency confusion
 # consider removing the proxy property for private packages
@@ -119,6 +117,12 @@ packages:
 # WORKAROUND: Through given configuration you can workaround following issue https://github.com/verdaccio/verdaccio/issues/301. Set to 0 in case 60 is not enough.
 server:
   keepAliveTimeout: 60
+  # The pluginPrefix replaces the default plugins prefix which is `verdaccio`, please don't include `-`. If `something` is provided
+  # the resolve package will be `something-xxxx`.
+  # pluginPrefix: something
+  # A regex for the password validation /.{3}$/ (3 characters min)
+  # An example to limit to 10 characters minimum
+  # passwordValidationRegex: /.{10}$/
   # Allow `req.ip` to resolve properly when Verdaccio is behind a proxy or load-balancer
   # See: https://expressjs.com/en/guide/behind-proxies.html
   # trustProxy: '127.0.0.1'
@@ -167,9 +171,9 @@ listen:
   # - localhost:4873            # default value
   # - http://localhost:4873     # same thing
   - 0.0.0.0:4873 # listen on all addresses (INADDR_ANY)
-# - https://example.org:4873  # if you want to use https
-# - "[::1]:4873"                # ipv6
-# - unix:/tmp/verdaccio.sock    # unix socket
+  # - https://example.org:4873  # if you want to use https
+  # - "[::1]:4873"                # ipv6
+  # - unix:/tmp/verdaccio.sock    # unix socket
 
 # The HTTPS configuration is useful if you do not consider use a HTTP Proxy
 # https://verdaccio.org/docs/configuration#https
@@ -192,12 +196,12 @@ listen:
 middlewares:
   audit:
     enabled: true
-  package-url:
-    enabled: true
 
 # https://verdaccio.org/docs/logger
 # log settings
+# log: { type: stdout, format: pretty, level: http }
 log: { type: stdout, format: pretty, level: info }
+# log: { type: stdout, format: pretty, level: error }
 #experiments:
 #  # support for npm token command
 #  token: false
