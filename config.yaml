@@ -91,7 +91,7 @@ packages:
     access: $all
     publish: $authenticated
     unpublish: $authenticated
-    proxy: taobao tencent
+    proxy: taobao
 
   '**':
     # 允许所有用户(包括未经身份验证的用户)读取和
@@ -107,7 +107,7 @@ packages:
     unpublish: $authenticated
 
     # if package is not available locally, proxy requests to 'npmjs' registry
-    proxy: taobao tencent
+    proxy: taobao
 
 # To improve your security configuration and  avoid dependency confusion
 # consider removing the proxy property for private packages
