@@ -1,14 +1,15 @@
 {
   "scripts": {
     "start": "verdaccio",
-    "list" :"node storage-list.mjs",
+    "list": "node storage-list.mjs",
     "postinstall": "patch-package",
     "pm2:start": "pm2 start pm2.yaml && pm2 save --force",
     "pm2:stop": "pm2 stop verdaccio && pm2 save --force",
     "pm2:delete": "pm2 delete verdaccio && pm2 save --force"
   },
   "dependencies": {
-    "verdaccio": "^5.26.2"
+    "verdaccio": "^5.26.2",
+    "verdaccio-package-url": "^1.0.0"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",

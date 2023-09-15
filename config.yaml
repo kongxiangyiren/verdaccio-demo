@@ -192,6 +192,8 @@ listen:
 middlewares:
   audit:
     enabled: true
+  package-url:
+    enabled: true
 
 # https://verdaccio.org/docs/logger
 # log settings
