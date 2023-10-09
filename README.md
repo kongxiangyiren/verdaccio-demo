@@ -42,6 +42,14 @@ pm2 startup
 pm2 update
 ```
 
+### iis
+
+需要安装 iis、iisnode、iis url 重写模块、node
+
+iisnode: https://github.com/Azure/iisnode/releases
+
+iis url 重写模块：https://www.iis.net/downloads/microsoft/url-rewrite
+
 ### 注意事项
 
 要下载新的包前，请先清理本地缓存,否则不会下载压缩包
