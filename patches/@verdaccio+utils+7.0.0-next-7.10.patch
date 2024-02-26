@@ -1,5 +1,5 @@
 diff --git a/node_modules/@verdaccio/utils/build/utils.js b/node_modules/@verdaccio/utils/build/utils.js
-index ae5376e..431e7b5 100644
+index ae5376e..3645686 100644
 --- a/node_modules/@verdaccio/utils/build/utils.js
 +++ b/node_modules/@verdaccio/utils/build/utils.js
 @@ -197,7 +197,7 @@ function addGravatarSupport(pkgInfo, online = true) {
