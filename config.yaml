@@ -160,7 +160,7 @@ publish:
 #   max: 1000
 
 # https://verdaccio.org/docs/configuration#max-body-size
-# max_body_size: 10mb
+max_body_size: 100mb
 
 # https://verdaccio.org/docs/configuration#listen-port
 listen:
