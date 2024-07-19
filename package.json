@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "verdaccio -c ./config.yaml",
+    "start": "cross-env NODE_OPTIONS=\"--no-warnings\" verdaccio -c ./config.yaml",
     "list": "node storage-list.mjs",
     "postinstall": "patch-package",
     "pm2:start": "pm2 start pm2.yaml && pm2 save --force",
@@ -8,10 +8,11 @@
     "pm2:delete": "pm2 delete verdaccio && pm2 save --force"
   },
   "dependencies": {
-    "verdaccio": "^5.30.3",
+    "verdaccio": "^5.31.1",
     "verdaccio-package-url": "^1.0.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "patch-package": "^8.0.0"
   }
 }
