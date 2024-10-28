@@ -4,7 +4,7 @@
 # 提高安全性。
 #
 # 查看更多配置文件示例:
-# https://github.com/verdaccio/verdaccio/tree/5.x/conf
+# https://github.com/verdaccio/verdaccio/tree/6.x/conf
 #
 # 阅读最佳实践
 # https://verdaccio.org/docs/best
@@ -143,6 +143,8 @@ publish:
 # security:
 #   api:
 #     legacy: true
+#     # 对于较旧的安装，建议设置为true
+#     migrateToSecureLegacySignature: true
 #     jwt:
 #       sign:
 #         expiresIn: 29d
@@ -167,9 +169,9 @@ listen:
   # - localhost:4873            # default value
   # - http://localhost:4873     # same thing
   - 0.0.0.0:4873 # listen on all addresses (INADDR_ANY)
-# - https://example.org:4873  # if you want to use https
-# - "[::1]:4873"                # ipv6
-# - unix:/tmp/verdaccio.sock    # unix socket
+  # - https://example.org:4873  # if you want to use https
+  # - "[::1]:4873"                # ipv6
+  # - unix:/tmp/verdaccio.sock    # unix socket
 
 # The HTTPS configuration is useful if you do not consider use a HTTP Proxy
 # https://verdaccio.org/docs/configuration#https
