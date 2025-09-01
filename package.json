@@ -8,11 +8,11 @@
     "pm2:delete": "pm2 delete verdaccio && pm2 save --force"
   },
   "dependencies": {
-    "verdaccio": "6.1.2",
+    "verdaccio": "6.1.6",
     "verdaccio-package-url": "^1.0.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.0.0",
     "patch-package": "^8.0.0"
   }
 }
