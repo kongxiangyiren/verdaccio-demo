@@ -8,7 +8,7 @@
     "pm2:delete": "pm2 delete verdaccio && pm2 save --force"
   },
   "dependencies": {
-    "verdaccio": "6.1.2",
+    "verdaccio": "6.1.6",
     "verdaccio-package-url": "^1.0.0"
   },
   "devDependencies": {
