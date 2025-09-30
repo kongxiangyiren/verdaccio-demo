@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "cross-env": "^10.0.0",
-    "patch-package": "^8.0.0"
+    "patch-package": "^8.0.1"
   }
 }
