@@ -1,0 +1,13 @@
+diff --git a/node_modules/@verdaccio/hooks/build/notify.js b/node_modules/@verdaccio/hooks/build/notify.js
+index 02426b1..0fa95e4 100644
+--- a/node_modules/@verdaccio/hooks/build/notify.js
++++ b/node_modules/@verdaccio/hooks/build/notify.js
+@@ -55,7 +55,7 @@ async function handleNotify(metadata, notifyEntry, remoteUser, publishedPackage)
+     content = await compileTemplate(notifyEntry.content, metadata);
+   }
+   const options = {
+-    body: JSON.stringify(content)
++    body: JSON.parse(content)
+   };
+ 
+   // provides fallback support, it's accept an Object {} and Array of {}

@@ -188,9 +188,8 @@ listen:
 # notify:
 #   method: POST
 #   headers: [{ "Content-Type": "application/json" }]
-#   endpoint: https://usagge.hipchat.com/v2/room/3729485/notification?auth_token=mySecretToken
-#   content: '{"color":"green","message":"New package published: * {{ name }}*","notify":true,"message_format":"text"}'
-
+#   endpoint: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=
+#   content:  '{"msgtype": "markdown","markdown": {"content": "新包已发布: * {{ name }}* \n版本: * {{#each versions}} v{{version}}{{/each}}* \n发布者名称: * {{ publisher.name }}* "} }'
 middlewares:
   audit:
     enabled: true
